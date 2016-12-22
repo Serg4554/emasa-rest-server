@@ -8,8 +8,6 @@ package rest.service;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -40,14 +38,13 @@ public class OperacionFacadeREST {
     }
 
     @PUT
-    @Path("put/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Operacion entity) {
+    public void edit(Operacion entity) {
         operacionFacade.edit(entity);
     }
 
     @DELETE
-    @Path("remove/{id}")
+    @Path("{id}")
     public void remove(@PathParam("id") Integer id) {
         Operacion operacion = operacionFacade.find(id);
         if(operacion != null){
@@ -57,7 +54,7 @@ public class OperacionFacadeREST {
     }
 
     @GET
-    @Path("find/{id}")
+    @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Operacion find(@PathParam("id") Integer id) {
         return operacionFacade.find(id);

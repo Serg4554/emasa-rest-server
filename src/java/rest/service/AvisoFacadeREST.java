@@ -9,8 +9,6 @@ import java.text.ParseException;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -41,9 +39,8 @@ public class AvisoFacadeREST{
     }
 
     @PUT
-    @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Aviso entity) {
+    public void edit(Aviso entity) {
         avisoFacade.edit(entity);
     }
 
@@ -64,7 +61,7 @@ public class AvisoFacadeREST{
     }
 
     @GET
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Aviso> findAll() {
         return avisoFacade.findAll();
     }

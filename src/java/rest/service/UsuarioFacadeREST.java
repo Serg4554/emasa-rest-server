@@ -40,9 +40,8 @@ public class UsuarioFacadeREST {
     }
 
     @PUT
-    @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") String id, Usuario entity) {
+    public void edit(Usuario entity) {
         usuarioFacade.edit(entity);
     }
 
